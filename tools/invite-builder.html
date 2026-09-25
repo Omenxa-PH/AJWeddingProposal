@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Invitation Link Builder | Alfred & Jessa</title>
+<style>
+:root { font-family: 'Segoe UI', Arial, sans-serif; color: #34566b; background: #e8f4fb; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 34px 17px 70px; background: radial-gradient(circle at top left,#fff,#e8f4fb 60%); min-height: 100vh; }
+main { max-width: 980px; margin: auto; }
+header, section { background: #fffdf9; border: 1px solid #d5e7f1; border-radius: 20px; padding: 26px; box-shadow: 0 10px 30px rgba(60,112,146,.06); margin-bottom: 15px; }
+header { text-align: center; }
+h1,h2 { font-family: Georgia,serif; font-weight: 400; color: #426e8a; }
+h1 { font-size: 35px; margin: 4px 0 8px; } h2 { font-size: 23px; margin: 0 0 8px; }
+p, li { line-height: 1.65; color: #6a7f8c; } p { margin: 6px 0 14px; }
+label { display: block; font-weight: 650; margin: 0 0 8px; font-size: 13px; }
+input,textarea { width:100%; font: 15px/1.5 'Segoe UI',Arial,sans-serif; border:1px solid #bcd7e7; border-radius: 11px; background: #fff; padding: 11px 13px; color:#344f61; }
+textarea { height: 100px; resize: vertical; }
+input:focus,textarea:focus { outline: 3px solid #b6dff4; border-color:#71add0; }
+.grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+small { display:block; line-height:1.5; color:#708997; margin:6px 0 0; }
+button { appearance:none; border:0; border-radius:100px; cursor:pointer; padding:12px 20px; color:#fff; background:#559bc5; font:650 13px 'Segoe UI',Arial,sans-serif; }
+button:hover { background:#397da6; } button:focus-visible { outline: 3px solid #2f6486; outline-offset: 3px; }
+button.secondary { color:#3e7597; background:#e7f3fa; }
+.buttons { display:flex; gap: 9px; flex-wrap: wrap; margin-top: 19px; }
+#status { font-weight:600; color:#a44848; margin-top:10px; }
+#output { display:none; }
+#results { display:grid; gap:9px; }
+.result { border:1px solid #d7eaf3; border-radius:12px; background:#f8fcfe; padding:12px 15px; display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.result .summary { min-width:160px; flex:1; } .result b { display:block; margin-bottom:4px; } .result span { color:#7d95a3; font-size:12px; }
+.result input { flex: 3; min-width: 230px; font-size: 12px; background:white; }
+.result button { padding:10px 14px; }
+.role-card { padding: 15px; border: 1px dashed #d3e7f1; border-radius: 16px; background: #fbfdff; }
+.role-card h3 { margin: 0 0 8px; font: 600 14px 'Segoe UI', Arial, sans-serif; color: #4c7591; letter-spacing: .01em; }
+#output h2 {margin-bottom:4px;} #count {font-size:13px; color:#6d8899;}
+@media(max-width:700px) { .grid {grid-template-columns:1fr;} header,section{padding:20px;} h1{font-size:30px;} .result input{min-width:100%;} }
+</style>
+</head>
+<body><main>
+<header><div aria-hidden="true">✧ ♡ ✧</div><h1>Your invitation link builder</h1><p>One beautiful website, personalized links for your full wedding party.</p></header>
+<section>
+<label for="site-url">Your published invitation website URL</label>
+<input id="site-url" type="url" placeholder="https://your-wedding-site.netlify.app/" autocomplete="url" required>
+<small>Publish the main invitation first, then paste the live website address here. Keep this builder on your own computer.</small>
+</section>
+<section>
+<h2>Add your names by role</h2>
+<p>Place one name per line under each role you want to use. Leave the others blank.</p>
+<div class="grid">
+  <div class="role-card"><h3>Bridesmaids</h3><textarea id="bridesmaids" placeholder="Sofia Reyes&#10;Camille Santos"></textarea></div>
+  <div class="role-card"><h3>Groomsmen</h3><textarea id="groomsmen" placeholder="Marco Cruz&#10;Luis Tan"></textarea></div>
+  <div class="role-card"><h3>Maid of Honor</h3><textarea id="maids" placeholder="Andrea Lopez"></textarea></div>
+  <div class="role-card"><h3>Best Man</h3><textarea id="bestmen" placeholder="Daniel Garcia"></textarea></div>
+  <div class="role-card"><h3>Ring Bearer</h3><textarea id="ringbearers" placeholder="Nathan"></textarea></div>
+  <div class="role-card"><h3>Bible Bearer</h3><textarea id="biblebearers" placeholder="Sophia"></textarea></div>
+  <div class="role-card"><h3>Banner Lady</h3><textarea id="bannerladies" placeholder="Angela"></textarea></div>
+  <div class="role-card"><h3>Banner Bearer</h3><textarea id="bannerbearers" placeholder="Miguel"></textarea></div>
+  <div class="role-card"><h3>Flower Girl</h3><textarea id="flowergirls" placeholder="Ella"></textarea></div>
+  <div class="role-card"><h3>Bubble Girl</h3><textarea id="bubblegirls" placeholder="Mia"></textarea></div>
+  <div class="role-card"><h3>Candle Sponsor</h3><textarea id="candles" placeholder="Tita Grace"></textarea></div>
+  <div class="role-card"><h3>Cord Sponsor</h3><textarea id="cords" placeholder="Tito Noel"></textarea></div>
+  <div class="role-card"><h3>Veil Sponsor</h3><textarea id="veils" placeholder="Tita Liza"></textarea></div>
+  <div class="role-card"><h3>Guest / Special Guest</h3><textarea id="guests" placeholder="Auntie Fe"></textarea><small>This is a soft generic version in case you want a guest-specific page too.</small></div>
+</div>
+<div class="buttons"><button type="button" id="generate">Create personal links ♡</button><button type="button" class="secondary" id="demo">Fill in sample names</button></div>
+<p id="status" role="status" aria-live="polite"></p>
+</section>
+<section id="output" aria-live="polite"><h2>Ready to send</h2><p id="count"></p><div id="results"></div><div class="buttons"><button type="button" id="download">Download all links as CSV</button><button type="button" class="secondary" id="copy-all">Copy all links</button></div><p><small>Send each person only their own link. Names appear in the link, so avoid sharing the full list publicly.</small></p></section>
+</main>
+<script>
+(() => {
+ const $=id=>document.getElementById(id);
+ const roleInputs=[['bridesmaids','bridesmaid','Bridesmaid'],['groomsmen','groomsman','Groomsman'],['maids','maid-of-honor','Maid of honor'],['bestmen','best-man','Best man'],['ringbearers','ring-bearer','Ring bearer'],['biblebearers','bible-bearer','Bible bearer'],['bannerladies','banner-lady','Banner lady'],['bannerbearers','banner-bearer','Banner bearer'],['flowergirls','flower-girl','Flower girl'],['bubblegirls','bubble-girl','Bubble girl'],['candles','candle-sponsor','Candle sponsor'],['cords','cord-sponsor','Cord sponsor'],['veils','veil-sponsor','Veil sponsor'],['guests','guest','Special guest']];
+ let rows=[];
+ const nameList=id=>$(id).value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+ const status=(message)=>{$('status').textContent=message;};
+ async function copyText(value) {
+   if(navigator.clipboard?.writeText) { try {await navigator.clipboard.writeText(value); return true;} catch(_){} }
+   const t=document.createElement('textarea'); t.value=value; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select();
+   let ok=false; try {ok=document.execCommand('copy');} catch(_){} t.remove();return ok;
+ }
+ function generate() {
+   let base;
+   try {
+     base=new URL($('site-url').value.trim());
+     if (!['https:','http:'].includes(base.protocol)) throw Error('Invalid protocol');
+     base.hash=''; base.search='';
+     if(!base.pathname.endsWith('.html')) base.pathname=base.pathname.replace(/\/?$/,'/')+'index.html';
+   } catch(_) {status('Please paste a valid published website URL, beginning with https:// or http://.');return;}
+   const names=roleInputs.flatMap(([id,role,label])=>nameList(id).map(name=>({name,role,label})));
+   if(!names.length) {status('Enter at least one name to create an invitation link.');return;}
+   rows=names.map(({name,role,label})=>{ const url=new URL(base); url.searchParams.set('name',name); url.searchParams.set('role',role); return {name,role,label,url:url.toString()}; });
+   const results=$('results');results.replaceChildren();
+   rows.forEach(({name,label,url})=>{
+      const row=document.createElement('div');row.className='result';
+      const summary=document.createElement('div'); summary.className='summary';
+      const n=document.createElement('b');n.textContent=name;
+      const r=document.createElement('span');r.textContent=label;
+      const link=document.createElement('input');link.type='text';link.readOnly=true;link.value=url;link.setAttribute('aria-label',`Invitation link for ${name}`);
+      link.addEventListener('focus',()=>link.select());
+      const button=document.createElement('button');button.type='button';button.textContent='Copy link';
+      button.addEventListener('click',async()=>{if(await copyText(url)) {button.textContent='Copied!';}else{link.focus();link.select();button.textContent='Select & copy';}});
+      summary.append(n,r);row.append(summary,link,button);results.appendChild(row);
+   });
+   $('count').textContent=`${rows.length} personalized invitation ${rows.length===1?'link':'links'} created. Each link opens the same wedding website.`;
+   $('output').style.display='block';status('');$('output').scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ $('generate').addEventListener('click',generate);
+ $('demo').addEventListener('click',()=>{
+   $('bridesmaids').value='Sofia Reyes\nCamille Santos';
+   $('groomsmen').value='Marco Cruz\nLuis Tan';
+   $('maids').value='Andrea Lopez';
+   $('bestmen').value='Daniel Garcia';
+   $('ringbearers').value='Nathan';
+   $('biblebearers').value='Sophia';
+   $('bannerladies').value='Angela';
+   $('bannerbearers').value='Miguel';
+   $('flowergirls').value='Ella';
+   $('bubblegirls').value='Mia';
+   $('candles').value='Tita Grace';
+   $('cords').value='Tito Noel';
+   $('veils').value='Tita Liza';
+   $('guests').value='Auntie Fe';
+   status('Example names added. Replace them with your own list.');
+ });
+ $('copy-all').addEventListener('click',async()=>{const ok=await copyText(rows.map(x=>`${x.name} (${x.label}): ${x.url}`).join('\n'));$('copy-all').textContent=ok?'Copied all links!':'Copy individual links above';});
+ $('download').addEventListener('click',()=>{
+   const csv=[['Name','Role','Personalized invitation link'],...rows.map(x=>[x.name,x.label,x.url])].map(cells=>cells.map(s=>'"'+String(s).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+   const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+   const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='personalized-wedding-party-links.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+ });
+ if(location.protocol==='http:'||location.protocol==='https:') $('site-url').value=new URL('../index.html',location.href).toString();
+})();
+</script>
+</body>
+</html>

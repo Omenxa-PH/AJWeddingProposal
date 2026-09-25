@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dfeff8">
+  <meta name="description" content="A very special wedding party proposal from Alfred and Jessa.">
+  <title>A Little Question For You | Alfred & Jessa</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="page-wash" aria-hidden="true"></div>
+
+  <div class="envelope-overlay" id="envelope-overlay">
+    <div class="envelope-stage">
+      <button class="envelope" id="open-invitation" type="button" aria-label="Open the invitation">
+        <span class="envelope-back"></span>
+        <span class="envelope-letter">
+          <span class="mini-floral mini-floral--top" aria-hidden="true"></span>
+          <span class="mini-letter-copy">Alfred &amp; Jessa<br><strong>Wedding Party Proposal</strong></span>
+          <span class="mini-floral mini-floral--bottom" aria-hidden="true"></span>
+        </span>
+        <span class="envelope-front" aria-hidden="true"></span>
+        <span class="envelope-flap"></span>
+        <span class="wax-seal" aria-hidden="true">♡</span>
+      </button>
+      <p class="open-copy">Tap to open your invitation</p>
+    </div>
+  </div>
+
+  <main class="invitation invitation--hidden" id="invitation">
+    <div class="floral-top" aria-hidden="true"><img src="assets/watercolor-floral-border.webp" alt=""></div>
+    <div class="card-content">
+      <header class="card-header">
+        <div class="brand-mark" aria-label="Alfred and Jessa">A <span aria-hidden="true">♡</span> J</div>
+        <p class="eyebrow">The wedding of Alfred &amp; Jessa</p>
+        <div class="fine-rule" aria-hidden="true"><span>✧</span></div>
+      </header>
+
+      <section class="hero" aria-labelledby="headline">
+        <p class="eyebrow eyebrow--blue">A little question, just for you</p>
+        <h1 id="headline">I can't say <em>“I DO”</em><br>without you.</h1>
+        <p class="salutation">Dear <span id="guest-name">Your Name</span><span class="salutation-comma">,</span></p>
+        <p id="intro-text" class="intro-text">Some of the most beautiful moments in life are made even better by the people standing beside us.</p>
+        <p id="sender-text" class="intro-text intro-text--small">It would mean the world to have you there on our special day.</p>
+      </section>
+
+      <section class="proposal" aria-labelledby="proposal-question">
+        <div class="proposal-illustration" id="proposal-illustration" aria-hidden="true">
+          <img class="bridesmaid-florals" src="assets/hanging-white-flowers.jpg" alt="">
+          <img class="groomsman-people" src="assets/groomsmen-illustration.png" alt="">
+        </div>
+        <p class="eyebrow eyebrow--blue" id="proposal-label">From Jessa, with love</p>
+        <h2 id="proposal-question">Will you be my <span id="role-word">bridesmaid</span>?</h2>
+        <p class="proposal-note" id="proposal-note">Because this day simply wouldn't feel the same without you by my side.</p>
+        <div class="actions" id="decision-actions">
+          <button class="button button--primary" id="accept-button" type="button">Yes, I'd love to! <span aria-hidden="true">♡</span></button>
+          <button class="button button--quiet" id="consider-button" type="button">Let me think about it</button>
+        </div>
+        <p class="response-note" id="initial-response-note">Whichever you choose, please send us your answer using the next step.</p>
+      </section>
+
+      <section class="reply-panel" id="reply-panel" aria-live="polite" hidden>
+        <div class="reply-symbol" aria-hidden="true">♡</div>
+        <h3 id="reply-title">Your reply is ready!</h3>
+        <p id="reply-description">Your choice isn't sent automatically. Please share your answer with us below.</p>
+        <div class="reply-message" id="reply-message"></div>
+        <div class="reply-actions">
+          <a class="button button--primary" href="#" id="form-link" target="_blank" rel="noopener noreferrer" hidden>Open reply form <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" id="share-button" type="button" hidden>Share my reply <span aria-hidden="true">↗</span></button>
+          <button class="button button--outline" id="copy-button" type="button">Copy my reply</button>
+          <button class="button button--quiet" id="change-button" type="button">Change my answer</button>
+        </div>
+        <p class="response-note" id="send-guidance">Copy the message, then paste and send it to Alfred or Jessa in Messenger or your preferred chat.</p>
+      </section>
+
+      <footer class="card-footer">
+        <div class="footer-ornament" aria-hidden="true">✧ &nbsp; ♡ &nbsp; ✧</div>
+        <p>With love, <span>Alfred &amp; Jessa</span></p>
+        <p class="date">12 JUNE 2027</p>
+      </footer>
+    </div>
+    <div class="floral-bottom" aria-hidden="true"><img src="assets/watercolor-floral-border.webp" alt=""></div>
+  </main>
+
+  <p class="preview-banner" id="preview-banner" hidden>Preview mode · Your personal invitation link will show your guest's name and role.</p>
+</body>
+</html>
