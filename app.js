@@ -16,13 +16,13 @@
       proposalNote: 'The big day would be even better with you on my team.'
     },
     'maid-of-honor': {
-      word: 'maid of honor', party: 'bride', sender: 'From Jessa, with love',
+      word: 'maid of honor', party: 'maid-of-honor', sender: 'From Jessa, with love',
       intro: 'From the little moments to the milestones, having you in my life has meant so much.',
       note: 'It would mean the world to have you by my side as my maid of honor.',
       proposalNote: 'No one could fill this place in my heart quite like you can.'
     },
     'best-man': {
-      word: 'best man', party: 'groom', sender: 'From Alfred, with love',
+      word: 'best man', party: 'best-man', sender: 'From Alfred, with love',
       intro: 'Some of the best memories are made with people who stay beside us through every chapter.',
       note: 'It would mean the world to have you standing beside me as my best man.',
       proposalNote: 'I would be honored to have you standing with me on our wedding day.'
