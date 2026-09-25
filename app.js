@@ -89,6 +89,31 @@
     }
   };
 
+  
+  const roleImages = {
+    'bridesmaid': 'bridesmaid-florals',
+    'maid-of-honor': 'maid-of-honor-people',
+
+    'groomsman': 'groomsman-people',
+    'best-man': 'bestman-people',
+
+    'candle-sponsor': 'candle-people',
+    'cord-sponsor': 'cord-people',
+    'veil-sponsor': 'veil-people',
+
+    'guest': 'guest-people',
+
+    'banner-lady': 'banner-people',
+    'banner-bearer': 'banner-people',
+
+    'ring-bearer': 'ring-people',
+    'bible-bearer': 'bible-people',
+
+    'flower-girl': 'flower-people',
+    'bubble-girl': 'bubble-people'
+  };
+
+
   const roleId = roles[params.get('role')] ? params.get('role') : 'bridesmaid';
   const role = roles[roleId];
   const instantOpen = params.get('open') === '1';
@@ -107,6 +132,16 @@
     $('proposal-note').textContent = role.proposalNote;
     document.title = personalized ? `For ${name} | A Wedding Party Proposal` : 'A Little Question For You | Alfred & Jessa';
     $('preview-banner').hidden = personalized;
+ 
+    const activeImage = roleImages[roleId] || 'guest-people';
+
+    document.querySelectorAll('#proposal-illustration img').forEach((image) => {
+      image.classList.toggle(
+        'is-active',
+        image.classList.contains(activeImage)
+      );
+    });
+
   }
 
   // The public responder URL alone does not contain Google Forms entry IDs.
@@ -234,9 +269,33 @@
     envelope.addEventListener('click', openInvitation, { once: true });
   }
 
+  function setupGallery() {
+    const dialog = $('gallery-lightbox');
+    const fullImage = $('gallery-full-image');
+    const caption = $('gallery-full-caption');
+    const close = $('gallery-close');
+    if (!dialog || !fullImage || !caption || !close) return;
+    document.querySelectorAll('.gallery-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const thumb = card.querySelector('img');
+        if (!thumb) return;
+        fullImage.src = thumb.currentSrc || thumb.src;
+        fullImage.alt = thumb.alt;
+        caption.textContent = card.dataset.galleryCaption || '';
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+      });
+    });
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => fullImage.removeAttribute('src'));
+  }
+
   applyRoleContent();
   setupEnvelope();
-
+  setupGallery();
+  
   $('accept-button').addEventListener('click', () => answer('yes'));
   $('consider-button').addEventListener('click', () => answer('later'));
   $('change-button').addEventListener('click', () => {
