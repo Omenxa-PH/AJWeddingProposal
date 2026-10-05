@@ -52,6 +52,7 @@ button.secondary { color:#3e7597; background:#e7f3fa; }
   <div class="role-card"><h3>Maid of Honor</h3><textarea id="maids" placeholder="Andrea Lopez"></textarea></div>
   <div class="role-card"><h3>Best Man</h3><textarea id="bestmen" placeholder="Daniel Garcia"></textarea></div>
   <div class="role-card"><h3>Ring Bearer</h3><textarea id="ringbearers" placeholder="Nathan"></textarea></div>
+  <div class="role-card"><h3>Coin Bearer</h3><textarea id="coinbearers" placeholder="Lucas"></textarea></div>
   <div class="role-card"><h3>Bible Bearer</h3><textarea id="biblebearers" placeholder="Sophia"></textarea></div>
   <div class="role-card"><h3>Banner Lady</h3><textarea id="bannerladies" placeholder="Angela"></textarea></div>
   <div class="role-card"><h3>Banner Bearer</h3><textarea id="bannerbearers" placeholder="Miguel"></textarea></div>
@@ -70,7 +71,28 @@ button.secondary { color:#3e7597; background:#e7f3fa; }
 <script>
 (() => {
  const $=id=>document.getElementById(id);
- const roleInputs=[['bridesmaids','bridesmaid','Bridesmaid'],['groomsmen','groomsman','Groomsman'],['maids','maid-of-honor','Maid of honor'],['bestmen','best-man','Best man'],['ringbearers','ring-bearer','Ring bearer'],['biblebearers','bible-bearer','Bible bearer'],['bannerladies','banner-lady','Banner lady'],['bannerbearers','banner-bearer','Banner bearer'],['flowergirls','flower-girl','Flower girl'],['bubblegirls','bubble-girl','Bubble girl'],['candles','candle-sponsor','Candle sponsor'],['cords','cord-sponsor','Cord sponsor'],['veils','veil-sponsor','Veil sponsor'],['guests','guest','Special guest']];
+ const roleInputs = [
+  ['bridesmaids', 'bridesmaid', 'Bridesmaid'],
+  ['groomsmen', 'groomsman', 'Groomsman'],
+  ['maids', 'maid-of-honor', 'Maid of honor'],
+  ['bestmen', 'best-man', 'Best man'],
+
+  ['ringbearers', 'ring-bearer', 'Ring bearer'],
+  ['coinbearers', 'coin-bearer', 'Coin bearer'],
+  ['biblebearers', 'bible-bearer', 'Bible bearer'],
+
+  ['bannerladies', 'banner-lady', 'Banner lady'],
+  ['bannerbearers', 'banner-bearer', 'Banner bearer'],
+
+  ['flowergirls', 'flower-girl', 'Flower girl'],
+  ['bubblegirls', 'bubble-girl', 'Bubble girl'],
+
+  ['candles', 'candle-sponsor', 'Candle sponsor'],
+  ['cords', 'cord-sponsor', 'Cord sponsor'],
+  ['veils', 'veil-sponsor', 'Veil sponsor'],
+
+  ['guests', 'guest', 'Special guest']
+];
  let rows=[];
  const nameList=id=>$(id).value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
  const status=(message)=>{$('status').textContent=message;};
@@ -112,6 +134,7 @@ button.secondary { color:#3e7597; background:#e7f3fa; }
    $('maids').value='Andrea Lopez';
    $('bestmen').value='Daniel Garcia';
    $('ringbearers').value='Nathan';
+   $('coinbearers').value = 'Lucas';
    $('biblebearers').value='Sophia';
    $('bannerladies').value='Angela';
    $('bannerbearers').value='Miguel';
